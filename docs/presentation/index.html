@@ -98,8 +98,17 @@ charset = utf-8
 						<p>
 							The readme file which will be displayed at the root of the repository (and in the JSDoc).
 						</p>
-<pre><code>
-# TODO: add some content
+<pre><code class="markdown">
+# UI5 ES6 Demo Library
+
+Repository which shows how to enable the usage of ES6 syntax when 
+building UI5 libraries.
+
+The latest version of the library cab be downloaded from here: 
+[ui5-demo.zip](https://...).
+
+You can find the documentation here: 
+[JsDoc](https://...), [Presentation](https://...).
 
 </code></pre>
 					</section>
@@ -138,11 +147,11 @@ charset = utf-8
 				</section>
 				<section>
 					<section>
-						<h2>Writting the code</h2>
+						<h2>Writing the code</h2>
 					</section>
 					<section>
 						<p>
-							Before writting the code, we need to prepare babel:
+							Before writing the code, we need to prepare babel:
 							<ul>
 								<li>install several npm packages</li>
 								
@@ -207,6 +216,9 @@ QUnit.test("Should curry the add function.", assert => {
 
 </code></pre>
 					</section>
+					<section>
+						<h2><strong><a href="https://github.com/serban-petrescu/ui5-es6-demo" target="_blank">Code</a></strong></h2>
+					</section>
 				</section>
 				<section>
 					<section>
@@ -249,20 +261,82 @@ grunt.registerTask("dist", [
 ]);
 </code></pre>
 					</section>
+					<section>
+						<h2><strong><a href="https://github.com/serban-petrescu/ui5-es6-demo/blob/master/Gruntfile.js" target="_blank">Gruntfile</a></strong></h2>
+					</section>
+					<section>
+						<h3>Travis-CI</h3>
+						<p>
+							We want the build to run automatically on each commit. For this we will use Travis.
+						</p>
+						<p>
+							First we need to enable it (a simple switch) and we have to write a ".travis.yml" file:
+						</p>
+<pre><code class="yaml">
+language: node_js
+node_js: '7'
+before_script: npm install
+script: grunt
+cache:
+  directories:
+  - node_modules
+
+</code></pre>
+					</section>
 				</section>
 				<section>
 					<section>
-						<h2>Publishing JSDoc</h2>
-						<h4>And other static content</h4>
+						<h2>Deployment</h2>
+						<h4>GitHub Pages and Releases</h4>
 					</section>
 					<section>
+						<p>
+							We will deploy to 2 different providers:
+							<ul>
+								<li>GitHub Pages (on each commit to master).</li>
+								<li>GitHub Releases (on each new tag).</li>
+							</ul>
+						</p>
 					</section>
-				</section>
-				<section>
 					<section>
-						<h2>Releasing the library</h2>
+						<h3>GitHub Pages</h3>
+						<p>
+							Everything from the "pages" folder is deployed directly. 
+							A GitHub personal access token has to be generated and saved into the travis environment.
+						</p>
+						<p>The travis.yml needs to be changed:</p>
+<pre><code class="yaml">
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: pages
+    on:
+      branch: master
+</code></pre>
 					</section>
 					<section>
+						<h3>GitHub Releases</h3>
+						<p>
+							Just the zip file is deployed. This deployment provider requires an OAuth token, 
+							(encrypted by the travis cli).
+						</p>
+						<p>The travis.yml needs to be changed:</p>
+<pre><code class="yaml">
+deploy:
+  - provider: releases
+    api_key:
+      secure: ...
+    file: pages/spet-ui5-demo.zip
+    on:
+      tags: true
+	  
+</code></pre>
+					</section>
+					<section>
+						<h2><strong><a href="https://github.com/serban-petrescu/ui5-es6-demo/blob/master/.travis.yml" target="_blank">.travis.yml</a></strong></h2>
+						<h2><strong><a href="https://github.com/serban-petrescu/ui5-es6-demo/tree/gh-pages" target="_blank">Pages</a></strong></h2>
+						<h2><strong><a href="https://github.com/serban-petrescu/ui5-es6-demo/releases" target="_blank">Releases</a></strong></h2>
 					</section>
 				</section>
 				<section>

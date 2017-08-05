@@ -12,10 +12,8 @@
 
 		<script>
 			jQuery.sap.require("sap.ui.thirdparty.qunit");
-			jQuery.sap.require("sap.ui.qunit.qunit-coverage");
 
 			QUnit.config.autostart = false;
-			QUnit.urlParams.coverage = true;
 			sap.ui.getCore().attachInit(function() {
 				sap.ui.require([
 					"spet/demo/test/all"
