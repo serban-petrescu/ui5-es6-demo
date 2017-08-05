@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Unit tests for Todo List</title>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+		<meta charset="utf-8">
+
+		<script id="sap-ui-bootstrap"
+			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-resourceroots='{"spet.demo.test": "./", "spet.demo": "../../../src/spet/demo"}'>
+		</script>
+
+		<script>
+			jQuery.sap.require("sap.ui.thirdparty.qunit");
+			jQuery.sap.require("sap.ui.qunit.qunit-coverage");
+
+			QUnit.config.autostart = false;
+			QUnit.urlParams.coverage = true;
+			sap.ui.getCore().attachInit(function() {
+				sap.ui.require([
+					"spet/demo/test/all"
+				], function() {
+					QUnit.start();
+				});
+			});
+		</script>
+
+	</head>
+	<body>
+		<div id="qunit"></div>
+		<div id="qunit-fixture"></div>
+	</body>
+</html>
