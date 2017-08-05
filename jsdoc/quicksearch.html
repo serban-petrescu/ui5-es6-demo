@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body style="background: transparent;">
+    <script src="scripts/docstrap.lib.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/fulltext-search.js"></script>
+
+    <script type="text/x-docstrap-searchdb">
+    {"library.js.html":{"id":"library.js.html","title":"Source: library.js","body":" UI5 ES6 Demo Namespaces spet.demo Source: library.js import sapUi from &quot;sap/ui/Global&quot;; import jQuery from &quot;jquery.sap.global&quot;; /** * Demo UI5 library which uses ES6 syntax. * @namespace * @name spet.demo * @version 0.0.1 * @public */ let oLibrary = sapUi.getCore().initLibrary({ name : &quot;spet.demo&quot;, version: &quot;0.0.1&quot;, dependencies : [&quot;sap.ui.core&quot;], types: [], interfaces: [], controls: [], elements: [], noLibraryCSS: true }) || jQuery.sap.getObject(&quot;spet.demo&quot;); // function definitions &quot;borrowed&quot; from https://medium.com/@adambene/currying-in-javascript-es6-540d2ad09400 /** * Transforms a given (bi)function in curry-enabled function. * @method spet.demo.curry * @param {function} f The function to be curried. * @returns {function} The curried function. */ oLibrary.curry = f =&gt; a =&gt; b =&gt; f(a, b) /** * Transforms a given curried (bi)function in a regular function. * @method spet.demo.uncurry * @param {function} f The function to be uncurried. * @returns {function} The resulting regular function. */ oLibrary.uncurry = f =&gt; (a, b) =&gt; f(a)(b) /** * Does a partial application on a function (by supplying its first parameter). * @method spet.demo.papply * @param {function} f The function to be applied. * @param {any} a The value for the first parameter of the function. * @returns {function} The resulting function (which has one less parameter). */ oLibrary.papply = (f, a) =&gt; b =&gt; f(a, b) export default oLibrary; × Search results Close "},"namespaces.list.html":{"id":"namespaces.list.html","title":"Namespaces","body":" UI5 ES6 Demo Namespaces spet.demo Namespaces Namespaces demo × Search results Close "},"index.html":{"id":"index.html","title":"Index","body":" UI5 ES6 Demo Namespaces spet.demo UI5 ES6 Demo Library Repository which shows how to enable the usage of ES6 syntax when building UI5 libraries. The latest version of the library cab be downloaded from here: ui5-demo.zip. You can find the documentation here: JsDoc, Presentation. × Search results Close "},"spet.demo.html":{"id":"spet.demo.html","title":"Namespace: demo","body":" UI5 ES6 Demo Namespaces spet.demo Namespace: demo demo Demo UI5 library which uses ES6 syntax. Version: 0.0.1 Source: library.js, line 4 Methods &lt;static&gt; curry(f) Transforms a given (bi)function in curry-enabled function. Parameters: Name Type Description f function The function to be curried. Source: library.js, line 24 Returns: The curried function. Type function &lt;static&gt; papply(f, a) Does a partial application on a function (by supplying its first parameter). Parameters: Name Type Description f function The function to be applied. a any The value for the first parameter of the function. Source: library.js, line 40 Returns: The resulting function (which has one less parameter). Type function &lt;static&gt; uncurry(f) Transforms a given curried (bi)function in a regular function. Parameters: Name Type Description f function The function to be uncurried. Source: library.js, line 32 Returns: The resulting regular function. Type function × Search results Close "}}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Searcher.init();
+        });
+
+        $(window).on("message", function(msg) {
+            var msgData = msg.originalEvent.data;
+
+            if (msgData.msgid != "docstrap.quicksearch.start") {
+                return;
+            }
+
+            var results = Searcher.search(msgData.searchTerms);
+
+            window.parent.postMessage({"results": results, "msgid": "docstrap.quicksearch.done"}, "*");
+        });
+    </script>
+</body>
+</html>
