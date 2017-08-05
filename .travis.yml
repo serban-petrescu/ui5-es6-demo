@@ -5,3 +5,16 @@ script: grunt
 cache:
   directories:
   - node_modules
+deploy:
+  - provider: releases
+    api_key:
+      secure: CO2iz8Qj3SvAFVhmNhXwTL0/ePimxeS3BvlT4YGQElhx+gvRbvNAxUiOilqGIKiokIQur9yH8aohww6ilt1hwuWaeTV31J8Pwzby3vHUTLZnqVIQl/3yrsltlfiCCafPaOGUA80PnVWGRmqdVAb2qeC6yKzDyHfSawYW66j7U8F/qgvgJrPdpnwMpe69vmcc3V9HhklShgP7fvqiETPu2ppIUWxJ5t4MZaXn9RvQsqzwOzUhC6ifN0UvU9YyH/tRuViVE+i6NUZK234b/NMXXIkS0U4IE5bEZK+Wshs6MwN0e8RA0QS4Q0efhGVNp+yaRqdcuLQbG3prWD6NO/2mQ/gYBcznyZZfTERuV4vdY+IM2n0Jg/wUY8HyQB426d15px4fB4nUV6/B79ysXGtCuFc8oT3To86slnFVblNCUb39mOBTGwNAt/5F8AfNDzyyJDEwyvjsd3PuZY4NimeewQXpBBcgrEdJEUuLrdwnyWPXu/zl4cgANPP02XeBlB1hQs4wa2qRK+4MwxhPUJTwUOaUALFhiUKd3vRDR9NgSl11wCr2b35sQIjWROVgEOw6FGpHJ8OOuGJp0nILzHZ3m2xu9A4I4O631u1tZKZ0T0hCMsvFzlRL8gHAUmAaO+j2ZevJ4fmEZq7dMT+JOVKOhnSukIZcc/nmJaKQ03r/e/s=
+    file: pages/spet-ui5-demo.zip
+    on:
+      tags: true
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: pages
+    on:
+      branch: master
